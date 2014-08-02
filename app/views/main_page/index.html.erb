@@ -1,0 +1,55 @@
+
+<nav class="navbar navbar-default" role="navigation">
+  <h1>Media Markt Verfügbarkeitsprüfung</h1>
+  <div class="container-fluid">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      <%= form_tag("/search", method: "get", class: "navbar-form navbar-left") do %>
+      <div class="form-group" id="store-input">
+        <%= label_tag(:city_id, "Markt wählen: ") %>
+        <%= select_tag :city_id, options_from_collection_for_select(@markets, "store_id", "name"), prompt: "Markt Auswählen", class: "form-control" %>
+      
+      </div>
+      <div class="form-group" id="product-input">
+        <%= label_tag(:product_id, "Produkt ID:") %>
+        <%= text_field_tag(:product_id, nil, class: "form-control", placeholder: "Produkt-ID eingeben") %>
+      </div>
+        
+        <%= submit_tag("Prüfe Verfügbarkeit", id: "submit", class: "btn btn-default") %>
+
+      <% end %>
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div id="errors" role="alert"><ul></ul></div>
+
+<div class="panel panel-warning">
+  <div class="panel-heading">Diese Seite bietet die Möglichkeit, schon ausverkaufte Online-Schnäppchen eventuell noch in den Filialen zu ergattern. Auch ist es so möglich, vorab zu sehen, ob sich der Besuch in der Filiale noch lohnt - oder bereits dort alles weg ist.</div>
+  <div class="panel-body">
+    <ol>
+      <li>Öffnet die Produktseite mit dem (ausverkaufen) Produkt (wenn ihr nicht mehr auf das Produkt kommt oder die Produktseite nicht vorher offen hattet, könnt ihr es mit der Suche probieren oder einfach über eine Suchmaschine auf die Produktseite gelangen).</li>
+      <li>Schaut euch nun die URL im Browser an. In meinem Fall interessierte ich mich für eine ausverkaufte Kamera: 
+        <br>
+        http://www.mediamarkt.de/mcs/product/SONY-Alpha-7--AF-3-5-5-6-28-70mm,48353,464097,1064915.html?langId=-3&et_cid=58&et_lid=248&et_sub=1-SONY%20Alpha%207,%20AF%203,5-5,6/28-70mm
+        <br>
+        Bei jeder Produkt-URL taucht in der Mitte oder am Ende dreimal eine Ziffernfolge auf: hier 48353,464097,1064915 - kopiert die letzte Zahl in das Produkt-ID-Feld, also 1064915
+      </li>
+      <li>Wählt den Markt aus und klickt auf 'Prüfe Verfügbarkeit'</li>
+    </ol>
+  </div>
+</div>
+<div class="alert alert-warning" role="alert">
+  Wichtig!
+  <ul>
+    <li>Alle Angaben ohne Gewähr. Die Daten kommen von <a href="http://www.mediamarkt.de">mediamarkt.de</a> und sind wahrscheinlich verzögert.</li>
+    <li>Filial- und Onlinepreise können sich unterscheiden!!!</li>
+    <li>Diese Seite ist in keinster Weise mit mediamarkt.de verbunden. Sie soll lediglich die Verfügbarkeitsprüfung etwas vereinfachen.</li>
+  </ul>
+</div>
+
+
+
+
