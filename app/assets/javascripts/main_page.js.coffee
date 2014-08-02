@@ -46,7 +46,7 @@ $ ->
     city_id = $('#city_id').val()
     product_id = $('#product_id').val()
     url = "http://www.mediamarkt.de/webapp/wcs/stores/servlet/MultiChannelCatalogEntryAlternativeStoreAjax?storeId=48353&langId=-3&catEntryId=#{product_id}&pickUpStoreId=#{city_id}"
-    valid_product = Validation.checkProduct(product_id)
     valid_city = Validation.checkStore(city_id)
+    valid_product = Validation.checkProduct(product_id)
 
     window.location = url if valid_product && valid_city
